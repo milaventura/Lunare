@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lunare - Perfumes Árabes Exclusivos. A essência que te revela.">
+    <title>LUNARE | Perfumes Árabes</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIÁVEIS DE COR E RESET --- */
+        :root {
+            --bg-color: #050505;       /* Preto quase absoluto */
+            --card-bg: #121212;        /* Cinza muito escuro para cartões */
+            --gold-main: #D4AF37;      /* Dourado Clássico */
+            --gold-light: #F2D06B;     /* Dourado Claro para brilho */
+            --text-white: #f5f5f5;
+            --text-gray: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            background-color: rgba(5, 5, 5, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 60px; /* Ajuste conforme necessário */
+            display: block;
+        }
+
+        /* Fallback caso a imagem não carregue, mantém o texto estiloso */
+        .logo-text {
+            font-size: 2rem;
+            color: var(--gold-main);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a:hover {
+            color: var(--gold-main);
+        }
+
+        /* Menu Mobile - Escondido em desktop, ajustado via Media Query abaixo */
+        .mobile-menu-icon {
+            display: none;
+            color: var(--gold-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION (BANNER) --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1920&auto=format&fit=crop'); /* Imagem genérica de perfume */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--gold-main);
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .btn-gold {
+            background: linear-gradient(45deg, var(--gold-main), var(--gold-light));
+            color: #000;
+            padding: 15px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 2px;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-gold:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- SOBRE --- */
+        .about {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .about h2 {
+            color: var(--gold-main);
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-gray);
+        }
+
+        /* --- PRODUTOS --- */
+        .products {
+            padding: 80px 20px;
+            background-color: #0a0a0a;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            color: var(--gold-main);
+            font-size: 2.5rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            border-color: var(--gold-main);
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain; /* Ajusta a imagem sem cortar */
+            margin-bottom: 20px;
+            background-color: #1a1a1a; /* Fundo caso a imagem seja png transparente */
+            border-radius: 4px;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 5px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            min-height: 45px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--gold-main);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: transparent;
+            border: 1px solid var(--gold-main);
+            color: var(--gold-main);
+            padding: 12px;
+            width: 100%;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--gold-main);
+            color: #000;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #000;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            margin-top: 60px;
+        }
+
+        .footer-logo {
+            color: var(--gold-main);
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin: 0 10px;
+        }
+
+        .social-links a:hover {
+            color: var(--gold-main);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* --- BOTÃO FLUTUANTE WHATSAPP --- */
+        .floating-wpp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 2000;
+            transition: 0.3s;
+        }
+
+        .floating-wpp:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Simplificação para mobile: remover menu topo */
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="Lunare Logo" class="logo-img">
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#collection">Coleção</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>LUNARE</h1>
+            <p>A ESSÊNCIA QUE TE REVELA</p>
+            <a href="#collection" class="btn-gold">Ver Coleção Exclusiva</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>A Magia do Oriente</h2>
+        <p>Selecionamos as fragrâncias árabes mais exclusivas para você. Perfumes com alta fixação, projeção marcante e notas que despertam mistério e elegância.</p>
+    </section>
+
+    <section id="collection" class="products">
+        <div class="section-title">
+            <h2>Destaques</h2>
+            <p style="color: #666; font-size: 0.9rem;">Toque para comprar via WhatsApp</p>
+        </div>
+
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300/222/D4AF37?text=Yara+Lattafa" alt="Perfume Arabe 1" class="product-img">
+                <h3 class="product-name">Yara Lattafa</h3>
+                <p class="product-desc">Doce, cremoso e envolvente. Notas de orquídea, heliotrópio e tangerina.</p>
+                <span class="product-price">R$ 299,00</span>
+                <a href="https://wa.me/5511999999999?text=Olá, vim pelo site Lunare e tenho interesse no perfume Yara Lattafa." target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Comprar
+                </a>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300/222/D4AF37?text=Asad+Lattafa" alt="Perfume Arabe 2" class="product-img">
+                <h3 class="product-name">Asad Lattafa</h3>
+                <p class="product-desc">Uma fragrância masculina poderosa com notas de pimenta preta, tabaco e café.</p>
+                <span class="product-price">R$ 320,00</span>
+                <a href="https://wa.me/5511999999999?text=Olá, vim pelo site Lunare e tenho interesse no perfume Asad Lattafa." target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Comprar
+                </a>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300/222/D4AF37?text=Khamrah" alt="Perfume Arabe 3" class="product-img">
+                <h3 class="product-name">Khamrah</h3>
+                <p class="product-desc">O luxo em forma líquida. Canela, noz-moscada e tâmaras em um acorde quente.</p>
+                <span class="product-price">R$ 380,00</span>
+                <a href="https://wa.me/5511999999999?text=Olá, vim pelo site Lunare e tenho interesse no perfume Khamrah." target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Comprar
+                </a>
+            </div>
+
+             <div class="product-card">
+                <img src="https://via.placeholder.com/300x300/222/D4AF37?text=Club+de+Nuit" alt="Perfume Arabe 4" class="product-img">
+                <h3 class="product-name">Club de Nuit</h3>
+                <p class="product-desc">Intenso e sofisticado. Uma assinatura olfativa inesquecível para a noite.</p>
+                <span class="product-price">R$ 250,00</span>
+                <a href="https://wa.me/5511999999999?text=Olá, vim pelo site Lunare e tenho interesse no perfume Club de Nuit." target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Comprar
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-logo">LUNARE</div>
+        <p style="color: #666; font-size: 0.9rem;">Perfumes Árabes Importados</p>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        
+        <p class="copyright">&copy; 2024 Lunare. Todos os direitos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/5511999999999?text=Olá, gostaria de conhecer o catálogo da Lunare." class="floating-wpp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
