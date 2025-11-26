@@ -55,7 +55,7 @@
         /* --- CABEÇALHO --- */
         header {
             background-color: rgba(5, 5, 5, 0.95);
-            padding: 20px 0;
+            padding: 10px 0; /* Reduzi um pouco o padding vertical para compensar a logo maior */
             position: fixed;
             width: 100%;
             top: 0;
@@ -73,8 +73,21 @@
         }
 
         .logo-img {
-            height: 60px; /* Ajuste conforme necessário */
+            height: 130px; /* AUMENTADO: De 60px para 130px para ficar bem grande */
+            width: auto;   /* Garante que a largura acompanhe proporcionalmente */
             display: block;
+            object-fit: contain;
+            transition: 0.3s;
+        }
+        
+        /* Ajuste para telas menores (Celular) para não ocupar a tela toda */
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 90px; /* No celular fica um pouco menor, mas ainda visível */
+            }
+            .hero {
+                margin-top: 110px; /* Compensa a altura do menu no celular */
+            }
         }
 
         /* Fallback caso a imagem não carregue, mantém o texto estiloso */
@@ -427,5 +440,6 @@
 </body>
 
 </html>
+
 
 
